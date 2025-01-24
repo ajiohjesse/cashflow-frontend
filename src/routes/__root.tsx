@@ -10,7 +10,6 @@ import {
   createRootRoute,
   useRouter,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { PostHogProvider } from "posthog-js/react";
 
 const postHogOptions = {
@@ -50,7 +49,6 @@ function RootLayout() {
         <Toaster />
         <TooltipProvider>
           <Outlet />
-          <TanStackRouterDevtools />
         </TooltipProvider>
         <ReactQueryDevtools />
       </QueryClientProvider>
