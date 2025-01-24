@@ -19,6 +19,7 @@ import { getCategoryWithStatQuery } from "@/network/queries/category.queries";
 import { getOverviewQuery } from "@/network/queries/overview.queries";
 import { getTransactionQuery } from "@/network/queries/transactions.queries";
 import { useMutation } from "@tanstack/react-query";
+import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
 import AddCategory from "./add-category";
 import { CategorySelect } from "./category-select";
@@ -78,6 +79,7 @@ interface TransactionFormProps {
 
 const TransactionForm = (props: TransactionFormProps) => {
   const { type } = props;
+  const posthog = usePostHog();
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState<
     { id: string; name: string } | undefined
@@ -109,6 +111,7 @@ const TransactionForm = (props: TransactionFormProps) => {
       toast({
         title: "Transaction added successfully",
       });
+      posthog.capture("New transaction", { type });
       queryClient.invalidateQueries(getOverviewQuery());
       queryClient.invalidateQueries(getTransactionQuery(type));
       queryClient.invalidateQueries(getCategoryWithStatQuery(type));

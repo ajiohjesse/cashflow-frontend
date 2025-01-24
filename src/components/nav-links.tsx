@@ -8,11 +8,12 @@ import {
   TicketsIcon,
   TrashIcon,
 } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
 
 const NavLinks = () => {
   return (
     <nav>
-      <NavLink to="/">
+      <NavLink to="/overview">
         <LayoutDashboardIcon className="size-5" />
         Overview
       </NavLink>
@@ -65,9 +66,12 @@ const NavLink = ({
   to: string;
   children: React.ReactNode;
 }) => {
+  const posthog = usePostHog();
+
   return (
     <Link
       to={to}
+      onClick={() => posthog.capture("Clicked nav link", { href: to })}
       activeOptions={{ exact: to === "/" }}
       className="flex items-center gap-2 border-l-4 border-transparent p-4 text-sm font-medium transition-colors hover:bg-accent data-[status=active]:border-primary data-[status=active]:text-primary"
     >

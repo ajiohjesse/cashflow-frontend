@@ -7,12 +7,14 @@ import { useMutation } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { isAxiosError } from "axios";
 import { CheckCircle, LogInIcon } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import Spinner from "./ui/spinner";
 
 export default function ForgotPasswordForm() {
   const [isDialogOpen, setDialogOpen] = useState(false);
+  const posthog = usePostHog();
 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
@@ -35,6 +37,7 @@ export default function ForgotPasswordForm() {
     onSuccess: () => {
       setEmail("");
       setDialogOpen(true);
+      posthog.capture("Forgot password request", { email: email });
     },
   });
 

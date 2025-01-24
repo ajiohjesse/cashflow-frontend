@@ -11,6 +11,11 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { PostHogProvider } from "posthog-js/react";
+
+const postHogOptions = {
+  api_host: import.meta.env.VITE_POSTHOG_HOST,
+};
 
 const ErrorBoundary: ErrorRouteComponent = ({ error, reset }) => {
   const router = useRouter();
@@ -37,13 +42,18 @@ export const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Toaster />
-      <TooltipProvider>
-        <Outlet />
-        <TanStackRouterDevtools />
-      </TooltipProvider>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <PostHogProvider
+      apiKey={import.meta.env.VITE_POSTHOG_KEY}
+      options={postHogOptions}
+    >
+      <QueryClientProvider client={queryClient}>
+        <Toaster />
+        <TooltipProvider>
+          <Outlet />
+          <TanStackRouterDevtools />
+        </TooltipProvider>
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </PostHogProvider>
   );
 }

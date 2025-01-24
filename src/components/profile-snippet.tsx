@@ -1,4 +1,4 @@
-import { useAuthStore, useUser } from "@/auth";
+import { useUser } from "@/auth";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,8 +13,7 @@ import Logout from "./logout";
 
 export default function ProfileSnippet() {
   const [isOpen, setIsOpen] = useState(false);
-  const { data, isLoading } = useUser();
-  const authStore = useAuthStore();
+  const { data } = useUser();
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>

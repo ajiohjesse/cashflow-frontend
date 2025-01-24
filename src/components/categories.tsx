@@ -7,6 +7,7 @@ import {
 } from "@/network/queries/category.queries";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FolderOpen, Trash2Icon } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
 import {
   AlertDialog,
@@ -112,6 +113,7 @@ const CategoryCard = (props: CategoryCardProps) => {
 
 const DeleteCategory = (props: { id: string; type: "income" | "expense" }) => {
   const { id, type } = props;
+  const posthog = usePostHog();
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   const { mutate, isPending } = useMutation({
@@ -124,6 +126,7 @@ const DeleteCategory = (props: { id: string; type: "income" | "expense" }) => {
       await api.delete(url);
     },
     onSuccess: () => {
+      posthog.capture("Delete category", { type });
       queryClient.invalidateQueries(getCategoryWithStatQuery(type));
       queryClient.invalidateQueries(
         type === "income" ? inflowCategoryQuery : outflowCategoryQuery,

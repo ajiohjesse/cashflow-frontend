@@ -1,11 +1,14 @@
+import { usePostHog } from "posthog-js/react";
 import { Button } from "./ui/button";
 
 const GoogleLogin = () => {
+  const posthog = usePostHog();
   return (
     <Button type="button" variant="outline" className="w-full" asChild>
       <a
         href={import.meta.env.VITE_API_BASE_URL + "/v1/google"}
         className="w-full"
+        onClick={() => posthog.capture("Google sign-in clicked")}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path
