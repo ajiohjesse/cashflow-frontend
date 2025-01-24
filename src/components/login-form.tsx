@@ -133,7 +133,8 @@ export default function LoginForm({
       </div>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
         By continuing to use this service, you agree to our{" "}
-        <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        <Link to="/terms-of-use">Terms of Use</Link> and{" "}
+        <Link to="/privacy-policy">Privacy Policy</Link>.
       </div>
     </div>
   );

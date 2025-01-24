@@ -10,177 +10,205 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as AuthImport } from "./routes/_auth";
-import { Route as AuthForgotPasswordImport } from "./routes/_auth/forgot-password";
-import { Route as AuthLoginImport } from "./routes/_auth/login";
-import { Route as AuthOauthImport } from "./routes/_auth/oauth";
-import { Route as AuthRegisterImport } from "./routes/_auth/register";
-import { Route as AuthResetPasswordImport } from "./routes/_auth/reset-password";
-import { Route as ProtectedImport } from "./routes/_protected";
-import { Route as ProtectedCategoriesImport } from "./routes/_protected/categories";
-import { Route as ProtectedOverviewImport } from "./routes/_protected/overview";
-import { Route as ProtectedTransactionsImport } from "./routes/_protected/transactions";
-import { Route as IndexImport } from "./routes/index";
+import { Route as rootRoute } from './routes/__root'
+import { Route as TermsOfUseImport } from './routes/terms-of-use'
+import { Route as PrivacyPolicyImport } from './routes/privacy-policy'
+import { Route as ProtectedImport } from './routes/_protected'
+import { Route as AuthImport } from './routes/_auth'
+import { Route as IndexImport } from './routes/index'
+import { Route as ProtectedTransactionsImport } from './routes/_protected/transactions'
+import { Route as ProtectedOverviewImport } from './routes/_protected/overview'
+import { Route as ProtectedCategoriesImport } from './routes/_protected/categories'
+import { Route as AuthResetPasswordImport } from './routes/_auth/reset-password'
+import { Route as AuthRegisterImport } from './routes/_auth/register'
+import { Route as AuthOauthImport } from './routes/_auth/oauth'
+import { Route as AuthLoginImport } from './routes/_auth/login'
+import { Route as AuthForgotPasswordImport } from './routes/_auth/forgot-password'
 
 // Create/Update Routes
 
-const ProtectedRoute = ProtectedImport.update({
-  id: "/_protected",
+const TermsOfUseRoute = TermsOfUseImport.update({
+  id: '/terms-of-use',
+  path: '/terms-of-use',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
+
+const PrivacyPolicyRoute = PrivacyPolicyImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProtectedRoute = ProtectedImport.update({
+  id: '/_protected',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthRoute = AuthImport.update({
-  id: "/_auth",
+  id: '/_auth',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const IndexRoute = IndexImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const ProtectedTransactionsRoute = ProtectedTransactionsImport.update({
-  id: "/transactions",
-  path: "/transactions",
+  id: '/transactions',
+  path: '/transactions',
   getParentRoute: () => ProtectedRoute,
-} as any);
+} as any)
 
 const ProtectedOverviewRoute = ProtectedOverviewImport.update({
-  id: "/overview",
-  path: "/overview",
+  id: '/overview',
+  path: '/overview',
   getParentRoute: () => ProtectedRoute,
-} as any);
+} as any)
 
 const ProtectedCategoriesRoute = ProtectedCategoriesImport.update({
-  id: "/categories",
-  path: "/categories",
+  id: '/categories',
+  path: '/categories',
   getParentRoute: () => ProtectedRoute,
-} as any);
+} as any)
 
 const AuthResetPasswordRoute = AuthResetPasswordImport.update({
-  id: "/reset-password",
-  path: "/reset-password",
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 
 const AuthRegisterRoute = AuthRegisterImport.update({
-  id: "/register",
-  path: "/register",
+  id: '/register',
+  path: '/register',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 
 const AuthOauthRoute = AuthOauthImport.update({
-  id: "/oauth",
-  path: "/oauth",
+  id: '/oauth',
+  path: '/oauth',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 
 const AuthLoginRoute = AuthLoginImport.update({
-  id: "/login",
-  path: "/login",
+  id: '/login',
+  path: '/login',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 
 const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
-  id: "/forgot-password",
-  path: "/forgot-password",
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => AuthRoute,
-} as any);
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/_auth": {
-      id: "/_auth";
-      path: "";
-      fullPath: "";
-      preLoaderRoute: typeof AuthImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/_protected": {
-      id: "/_protected";
-      path: "";
-      fullPath: "";
-      preLoaderRoute: typeof ProtectedImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/_auth/forgot-password": {
-      id: "/_auth/forgot-password";
-      path: "/forgot-password";
-      fullPath: "/forgot-password";
-      preLoaderRoute: typeof AuthForgotPasswordImport;
-      parentRoute: typeof AuthImport;
-    };
-    "/_auth/login": {
-      id: "/_auth/login";
-      path: "/login";
-      fullPath: "/login";
-      preLoaderRoute: typeof AuthLoginImport;
-      parentRoute: typeof AuthImport;
-    };
-    "/_auth/oauth": {
-      id: "/_auth/oauth";
-      path: "/oauth";
-      fullPath: "/oauth";
-      preLoaderRoute: typeof AuthOauthImport;
-      parentRoute: typeof AuthImport;
-    };
-    "/_auth/register": {
-      id: "/_auth/register";
-      path: "/register";
-      fullPath: "/register";
-      preLoaderRoute: typeof AuthRegisterImport;
-      parentRoute: typeof AuthImport;
-    };
-    "/_auth/reset-password": {
-      id: "/_auth/reset-password";
-      path: "/reset-password";
-      fullPath: "/reset-password";
-      preLoaderRoute: typeof AuthResetPasswordImport;
-      parentRoute: typeof AuthImport;
-    };
-    "/_protected/categories": {
-      id: "/_protected/categories";
-      path: "/categories";
-      fullPath: "/categories";
-      preLoaderRoute: typeof ProtectedCategoriesImport;
-      parentRoute: typeof ProtectedImport;
-    };
-    "/_protected/overview": {
-      id: "/_protected/overview";
-      path: "/overview";
-      fullPath: "/overview";
-      preLoaderRoute: typeof ProtectedOverviewImport;
-      parentRoute: typeof ProtectedImport;
-    };
-    "/_protected/transactions": {
-      id: "/_protected/transactions";
-      path: "/transactions";
-      fullPath: "/transactions";
-      preLoaderRoute: typeof ProtectedTransactionsImport;
-      parentRoute: typeof ProtectedImport;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthImport
+      parentRoute: typeof rootRoute
+    }
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof ProtectedImport
+      parentRoute: typeof rootRoute
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyImport
+      parentRoute: typeof rootRoute
+    }
+    '/terms-of-use': {
+      id: '/terms-of-use'
+      path: '/terms-of-use'
+      fullPath: '/terms-of-use'
+      preLoaderRoute: typeof TermsOfUseImport
+      parentRoute: typeof rootRoute
+    }
+    '/_auth/forgot-password': {
+      id: '/_auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/login': {
+      id: '/_auth/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/oauth': {
+      id: '/_auth/oauth'
+      path: '/oauth'
+      fullPath: '/oauth'
+      preLoaderRoute: typeof AuthOauthImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterImport
+      parentRoute: typeof AuthImport
+    }
+    '/_auth/reset-password': {
+      id: '/_auth/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordImport
+      parentRoute: typeof AuthImport
+    }
+    '/_protected/categories': {
+      id: '/_protected/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof ProtectedCategoriesImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/overview': {
+      id: '/_protected/overview'
+      path: '/overview'
+      fullPath: '/overview'
+      preLoaderRoute: typeof ProtectedOverviewImport
+      parentRoute: typeof ProtectedImport
+    }
+    '/_protected/transactions': {
+      id: '/_protected/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof ProtectedTransactionsImport
+      parentRoute: typeof ProtectedImport
+    }
   }
 }
 
 // Create and export the route tree
 
 interface AuthRouteChildren {
-  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute;
-  AuthLoginRoute: typeof AuthLoginRoute;
-  AuthOauthRoute: typeof AuthOauthRoute;
-  AuthRegisterRoute: typeof AuthRegisterRoute;
-  AuthResetPasswordRoute: typeof AuthResetPasswordRoute;
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthOauthRoute: typeof AuthOauthRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
@@ -189,123 +217,139 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthOauthRoute: AuthOauthRoute,
   AuthRegisterRoute: AuthRegisterRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
-};
+}
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface ProtectedRouteChildren {
-  ProtectedCategoriesRoute: typeof ProtectedCategoriesRoute;
-  ProtectedOverviewRoute: typeof ProtectedOverviewRoute;
-  ProtectedTransactionsRoute: typeof ProtectedTransactionsRoute;
+  ProtectedCategoriesRoute: typeof ProtectedCategoriesRoute
+  ProtectedOverviewRoute: typeof ProtectedOverviewRoute
+  ProtectedTransactionsRoute: typeof ProtectedTransactionsRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedCategoriesRoute: ProtectedCategoriesRoute,
   ProtectedOverviewRoute: ProtectedOverviewRoute,
   ProtectedTransactionsRoute: ProtectedTransactionsRoute,
-};
+}
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
   ProtectedRouteChildren,
-);
+)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "": typeof ProtectedRouteWithChildren;
-  "/forgot-password": typeof AuthForgotPasswordRoute;
-  "/login": typeof AuthLoginRoute;
-  "/oauth": typeof AuthOauthRoute;
-  "/register": typeof AuthRegisterRoute;
-  "/reset-password": typeof AuthResetPasswordRoute;
-  "/categories": typeof ProtectedCategoriesRoute;
-  "/overview": typeof ProtectedOverviewRoute;
-  "/transactions": typeof ProtectedTransactionsRoute;
+  '/': typeof IndexRoute
+  '': typeof ProtectedRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-of-use': typeof TermsOfUseRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
+  '/oauth': typeof AuthOauthRoute
+  '/register': typeof AuthRegisterRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/categories': typeof ProtectedCategoriesRoute
+  '/overview': typeof ProtectedOverviewRoute
+  '/transactions': typeof ProtectedTransactionsRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "": typeof ProtectedRouteWithChildren;
-  "/forgot-password": typeof AuthForgotPasswordRoute;
-  "/login": typeof AuthLoginRoute;
-  "/oauth": typeof AuthOauthRoute;
-  "/register": typeof AuthRegisterRoute;
-  "/reset-password": typeof AuthResetPasswordRoute;
-  "/categories": typeof ProtectedCategoriesRoute;
-  "/overview": typeof ProtectedOverviewRoute;
-  "/transactions": typeof ProtectedTransactionsRoute;
+  '/': typeof IndexRoute
+  '': typeof ProtectedRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-of-use': typeof TermsOfUseRoute
+  '/forgot-password': typeof AuthForgotPasswordRoute
+  '/login': typeof AuthLoginRoute
+  '/oauth': typeof AuthOauthRoute
+  '/register': typeof AuthRegisterRoute
+  '/reset-password': typeof AuthResetPasswordRoute
+  '/categories': typeof ProtectedCategoriesRoute
+  '/overview': typeof ProtectedOverviewRoute
+  '/transactions': typeof ProtectedTransactionsRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
-  "/_auth": typeof AuthRouteWithChildren;
-  "/_protected": typeof ProtectedRouteWithChildren;
-  "/_auth/forgot-password": typeof AuthForgotPasswordRoute;
-  "/_auth/login": typeof AuthLoginRoute;
-  "/_auth/oauth": typeof AuthOauthRoute;
-  "/_auth/register": typeof AuthRegisterRoute;
-  "/_auth/reset-password": typeof AuthResetPasswordRoute;
-  "/_protected/categories": typeof ProtectedCategoriesRoute;
-  "/_protected/overview": typeof ProtectedOverviewRoute;
-  "/_protected/transactions": typeof ProtectedTransactionsRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/_auth': typeof AuthRouteWithChildren
+  '/_protected': typeof ProtectedRouteWithChildren
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/terms-of-use': typeof TermsOfUseRoute
+  '/_auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/_auth/login': typeof AuthLoginRoute
+  '/_auth/oauth': typeof AuthOauthRoute
+  '/_auth/register': typeof AuthRegisterRoute
+  '/_auth/reset-password': typeof AuthResetPasswordRoute
+  '/_protected/categories': typeof ProtectedCategoriesRoute
+  '/_protected/overview': typeof ProtectedOverviewRoute
+  '/_protected/transactions': typeof ProtectedTransactionsRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | "/"
-    | ""
-    | "/forgot-password"
-    | "/login"
-    | "/oauth"
-    | "/register"
-    | "/reset-password"
-    | "/categories"
-    | "/overview"
-    | "/transactions";
-  fileRoutesByTo: FileRoutesByTo;
+    | '/'
+    | ''
+    | '/privacy-policy'
+    | '/terms-of-use'
+    | '/forgot-password'
+    | '/login'
+    | '/oauth'
+    | '/register'
+    | '/reset-password'
+    | '/categories'
+    | '/overview'
+    | '/transactions'
+  fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | ""
-    | "/forgot-password"
-    | "/login"
-    | "/oauth"
-    | "/register"
-    | "/reset-password"
-    | "/categories"
-    | "/overview"
-    | "/transactions";
+    | '/'
+    | ''
+    | '/privacy-policy'
+    | '/terms-of-use'
+    | '/forgot-password'
+    | '/login'
+    | '/oauth'
+    | '/register'
+    | '/reset-password'
+    | '/categories'
+    | '/overview'
+    | '/transactions'
   id:
-    | "__root__"
-    | "/"
-    | "/_auth"
-    | "/_protected"
-    | "/_auth/forgot-password"
-    | "/_auth/login"
-    | "/_auth/oauth"
-    | "/_auth/register"
-    | "/_auth/reset-password"
-    | "/_protected/categories"
-    | "/_protected/overview"
-    | "/_protected/transactions";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/_auth'
+    | '/_protected'
+    | '/privacy-policy'
+    | '/terms-of-use'
+    | '/_auth/forgot-password'
+    | '/_auth/login'
+    | '/_auth/oauth'
+    | '/_auth/register'
+    | '/_auth/reset-password'
+    | '/_protected/categories'
+    | '/_protected/overview'
+    | '/_protected/transactions'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AuthRoute: typeof AuthRouteWithChildren;
-  ProtectedRoute: typeof ProtectedRouteWithChildren;
+  IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRouteWithChildren
+  ProtectedRoute: typeof ProtectedRouteWithChildren
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  TermsOfUseRoute: typeof TermsOfUseRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   ProtectedRoute: ProtectedRouteWithChildren,
-};
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  TermsOfUseRoute: TermsOfUseRoute,
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -315,7 +359,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/_auth",
-        "/_protected"
+        "/_protected",
+        "/privacy-policy",
+        "/terms-of-use"
       ]
     },
     "/": {
@@ -338,6 +384,12 @@ export const routeTree = rootRoute
         "/_protected/overview",
         "/_protected/transactions"
       ]
+    },
+    "/privacy-policy": {
+      "filePath": "privacy-policy.tsx"
+    },
+    "/terms-of-use": {
+      "filePath": "terms-of-use.tsx"
     },
     "/_auth/forgot-password": {
       "filePath": "_auth/forgot-password.tsx",

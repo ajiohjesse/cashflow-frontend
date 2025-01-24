@@ -6,6 +6,7 @@ import {
   MessageSquareIcon,
   ShieldAlertIcon,
   TicketsIcon,
+  TrashIcon,
 } from "lucide-react";
 
 const NavLinks = () => {
@@ -30,7 +31,7 @@ const NavLinks = () => {
         <InfoIcon className="size-5" />
         Terms Of Use
       </NavLink>
-      <NavLink to="/privacy">
+      <NavLink to="/privacy-policy">
         <ShieldAlertIcon className="size-5" />
         Privacy Policy
       </NavLink>
@@ -40,6 +41,16 @@ const NavLinks = () => {
       >
         <MessageSquareIcon className="size-5" />
         Contact Us
+      </a>
+
+      <div className="mx-auto my-8 h-px w-[90%] bg-border"></div>
+
+      <a
+        className="flex items-center gap-2 border-l-4 border-transparent p-4 text-sm font-medium text-rose-600 transition-colors hover:bg-accent"
+        href="mailto:me@rehx.name.ng?subject=Account Deletion Request&body=Hello,%0D%0A%0D%0AI am writing to request the deletion of my account and the removal of all my personal data from the CashFlow application.%0D%0A%0D%0APlease confirm once the process is complete.%0D%0A%0D%0AThank you."
+      >
+        <TrashIcon className="size-5" />
+        Account Deletion
       </a>
     </nav>
   );
