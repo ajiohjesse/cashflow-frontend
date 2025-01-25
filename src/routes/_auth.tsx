@@ -1,4 +1,4 @@
-import banner from "@/assets/banner2.png";
+import banner from "@/assets/login.png";
 import { useAuthStore } from "@/auth";
 import Logo from "@/components/logo";
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";

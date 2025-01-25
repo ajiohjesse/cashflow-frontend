@@ -12,6 +12,9 @@ function RouteComponent() {
       <PageHeader />
       <main className="prose mx-auto py-4">
         <h1>Terms of Use</h1>
+
+        <p className="font-bold">Effective date: January 25, 2025</p>
+
         <p>
           Welcome to CashFlow! By accessing or using our application, you agree
           to comply with these Terms of Use. If you do not agree, please do not

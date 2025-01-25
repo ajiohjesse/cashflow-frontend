@@ -1,4 +1,4 @@
-import banner from "@/assets/banner.png";
+import banner from "@/assets/hero.png";
 import Footer from "@/components/footer";
 import GradientText from "@/components/gradient-text";
 import PageHeader from "@/components/page-header";
@@ -15,7 +15,7 @@ function RouteComponent() {
     <>
       <PageHeader />
       <main className="min-h-[calc(100dvh-4rem)] px-8 py-14 md:px-16 lg:px-24 lg:py-0">
-        <section className="flex flex-col gap-8 min-[900px]:grid min-[900px]:grid-cols-2 min-[900px]:items-center min-[900px]:py-8">
+        <section className="flex flex-col-reverse gap-8 min-[900px]:grid min-[900px]:grid-cols-2 min-[900px]:items-center min-[900px]:py-8">
           <div className="space-y-6">
             <h1 className="text-balance text-[clamp(2.2rem,4vw,3rem)] font-bold leading-[1.2]">
               The <GradientText>Easiest</GradientText> Way to Keep Track{" "}

@@ -12,6 +12,7 @@ function RouteComponent() {
       <PageHeader />
       <main className="prose mx-auto py-4">
         <h1>Privacy Policy</h1>
+        <p className="font-bold">Effective date: January 25, 2025</p>
         <p>
           Your privacy is important to us at CashFlow. This Privacy Policy
           explains how we collect, use, and safeguard your personal information.
