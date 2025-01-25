@@ -57,6 +57,10 @@ export default function ResetPasswordForm(props: Props) {
       setError("All fields are required");
       return;
     }
+    if (password.trim().length < 4) {
+      setError("Password must be at least 4 characters");
+      return;
+    }
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;

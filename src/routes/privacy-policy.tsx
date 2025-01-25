@@ -10,7 +10,7 @@ function RouteComponent() {
   return (
     <>
       <PageHeader />
-      <main className="prose mx-auto py-4">
+      <main className="prose mx-auto px-4 py-4">
         <h1>Privacy Policy</h1>
         <p className="font-bold">Effective date: January 25, 2025</p>
         <p>

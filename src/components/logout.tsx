@@ -19,6 +19,7 @@ const Logout = () => {
       posthog?.capture("User logout");
       queryClient.invalidateQueries();
       authStore.clearUser();
+      window.location.href = "/login";
     },
   });
 

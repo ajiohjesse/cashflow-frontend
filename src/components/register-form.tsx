@@ -75,6 +75,10 @@ export default function RegisterForm({
       setError("Passwords do not match");
       return;
     }
+    if (password.trim().length < 4) {
+      setError("Password must be at least 4 characters");
+      return;
+    }
     mutate();
   };
 
