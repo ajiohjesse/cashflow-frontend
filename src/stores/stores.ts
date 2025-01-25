@@ -34,3 +34,20 @@ export const useOverviewStore = create(
     },
   ),
 );
+
+interface NavStoreType {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export const useNavStore = create(
+  persist<NavStoreType>(
+    (set) => ({
+      isOpen: false,
+      setIsOpen: (isOpen) => set({ isOpen }),
+    }),
+    {
+      name: "nav-store",
+    },
+  ),
+);

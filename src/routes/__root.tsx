@@ -3,7 +3,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { queryClient } from "@/lib/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   ErrorRouteComponent,
   Outlet,
@@ -50,7 +49,7 @@ function RootLayout() {
         <TooltipProvider>
           <Outlet />
         </TooltipProvider>
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </QueryClientProvider>
     </PostHogProvider>
   );

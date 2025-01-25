@@ -18,18 +18,18 @@ export default function ProfileSnippet() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button className="relative size-10 rounded-sm">
+        <Button className="relative size-9 rounded-sm">
           <span className="sr-only">Open user menu</span>
           {data?.fullName[0]}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-2">
-            <p className="line-clamp-1 text-sm font-medium leading-none">
+          <div className="flex flex-col space-y-1">
+            <p className="line-clamp-1 text-sm font-semibold">
               {data?.fullName}
             </p>
-            <p className="line-clamp-1 text-xs leading-none text-muted-foreground">
+            <p className="line-clamp-1 text-xs text-muted-foreground">
               {data?.email}
             </p>
           </div>
