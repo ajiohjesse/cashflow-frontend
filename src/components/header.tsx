@@ -12,6 +12,7 @@ const Header = () => {
       <div className="flex items-center gap-4">
         <ProfileSnippet />
         <Button
+          id="nav-toggle"
           size="icon"
           variant="outline"
           onClick={() => setIsOpen(!isOpen)}

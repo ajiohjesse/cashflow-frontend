@@ -1,9 +1,11 @@
 import { useAuthStore } from "@/auth";
 import Header from "@/components/header";
 import NavLinks from "@/components/nav-links";
+import useClickOutside from "@/hooks/use-click-outside";
 import { cn } from "@/lib/utils";
 import { useNavStore } from "@/stores/stores";
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
+import { useRef } from "react";
 
 export const Route = createFileRoute("/_protected")({
   beforeLoad: () => {
@@ -18,7 +20,16 @@ export const Route = createFileRoute("/_protected")({
 });
 
 function ProtectedLayout() {
-  const { isOpen } = useNavStore();
+  const { isOpen, setIsOpen } = useNavStore();
+  const navRef = useRef(null);
+  useClickOutside(
+    navRef,
+    () => {
+      setIsOpen(!isOpen);
+    },
+    [],
+    ["nav-toggle"],
+  );
 
   return (
     <>
@@ -26,6 +37,7 @@ function ProtectedLayout() {
 
       <div className="grid min-[1024px]:grid-cols-[240px_1fr]">
         <aside
+          ref={navRef}
           style={{
             transition: "left 300ms ease-out",
           }}

@@ -68,7 +68,12 @@ const LatestTransactions = () => {
           Latest Transactions
         </h2>
         <Link
-          to="/"
+          to="/transactions"
+          search={{
+            type: "income",
+            limit: 20,
+            page: 1,
+          }}
           className="flex items-center gap-1 text-sm text-primary underline"
         >
           All transactions <ArrowUpRight size={16} />
