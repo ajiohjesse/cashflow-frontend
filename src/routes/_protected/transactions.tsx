@@ -87,10 +87,10 @@ function RouteComponent() {
             Expense
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="income">
+        <TabsContent value="income" className="min-h-[calc(100dvh/2)]">
           <Inflows />
         </TabsContent>
-        <TabsContent value="expense">
+        <TabsContent value="expense" className="min-h-[calc(100dvh/2)]">
           <Outflows />
         </TabsContent>
       </Tabs>

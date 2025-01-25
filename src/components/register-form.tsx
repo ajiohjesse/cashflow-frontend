@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { isAxiosError } from "axios";
 import { useState } from "react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import GoogleLogin from "./google-login";
 import Spinner from "./ui/spinner";
 

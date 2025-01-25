@@ -8,6 +8,7 @@ import { Link } from "@tanstack/react-router";
 import { isAxiosError } from "axios";
 import { CheckCircle, LogInIcon } from "lucide-react";
 import { useState } from "react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import Spinner from "./ui/spinner";
 
