@@ -49,8 +49,8 @@ const CategoryStats = (props: Props) => {
 
     return (
       <article className={cn("grid w-full rounded-lg border p-4 shadow-md")}>
-        <h2 className="font-bold text-muted-foreground">
-          Top {type === "income" ? "Income" : "Expense"} Category
+        <h2 className="text-sm font-bold text-muted-foreground">
+          Most Frequent {type === "income" ? "Income" : "Expense"} Category
         </h2>
         <p
           className={cn(
