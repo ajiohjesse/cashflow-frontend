@@ -1,3 +1,4 @@
+import { useNavStore } from "@/stores/stores";
 import { Link } from "@tanstack/react-router";
 import {
   FolderOpen,
@@ -67,11 +68,15 @@ const NavLink = ({
   children: React.ReactNode;
 }) => {
   const posthog = useVitePostHog();
+  const { isOpen, setIsOpen } = useNavStore();
 
   return (
     <Link
       to={to}
-      onClick={() => posthog?.capture("Clicked nav link", { href: to })}
+      onClick={() => {
+        posthog?.capture("Clicked nav link", { href: to });
+        setIsOpen(!isOpen);
+      }}
       activeOptions={{ exact: to === "/" }}
       className="flex items-center gap-2 border-l-4 border-transparent p-4 text-sm font-medium transition-colors hover:bg-accent data-[status=active]:border-primary data-[status=active]:text-primary"
     >

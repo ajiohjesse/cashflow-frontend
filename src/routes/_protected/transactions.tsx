@@ -59,7 +59,7 @@ function RouteComponent() {
   };
 
   return (
-    <div className="p-4 md:px-6">
+    <div className="min-h-screen p-4 md:px-6">
       <div className="mb-2 flex flex-col gap-4 xs:flex-row xs:items-baseline xs:justify-between">
         <h1 className="text-xl font-semibold text-muted-foreground">
           All Transactions
