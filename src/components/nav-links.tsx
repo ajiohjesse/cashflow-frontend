@@ -8,6 +8,7 @@ import {
   TicketsIcon,
   TrashIcon,
 } from "lucide-react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 
 const NavLinks = () => {
   return (
