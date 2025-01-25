@@ -7,8 +7,8 @@ import { useMutation } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { isAxiosError } from "axios";
 import { CheckCircle, LogInIcon } from "lucide-react";
-import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import Spinner from "./ui/spinner";
 
@@ -18,7 +18,7 @@ interface Props {
 
 export default function ResetPasswordForm(props: Props) {
   const { token } = props;
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   const [password, setPassword] = useState("");
@@ -45,7 +45,7 @@ export default function ResetPasswordForm(props: Props) {
       setPassword("");
       setConfirmPassword("");
       setDialogOpen(true);
-      posthog.capture("Reset password completed");
+      posthog?.capture("Reset password completed");
     },
   });
 

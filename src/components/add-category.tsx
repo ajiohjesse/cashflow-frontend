@@ -8,8 +8,8 @@ import {
 } from "@/network/queries/category.queries";
 import { useMutation } from "@tanstack/react-query";
 import { PlusIcon } from "lucide-react";
-import { usePostHog } from "posthog-js/react";
 import React, { useState } from "react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -30,7 +30,7 @@ interface AddCategoryProps {
 
 const AddCategory = (props: AddCategoryProps) => {
   const { type, trigger } = props;
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
 
   const [open, setOpen] = useState(false);
   const [categoryName, setCategoryName] = useState("");
@@ -65,7 +65,7 @@ const AddCategory = (props: AddCategoryProps) => {
       toast({
         title: "Category added successfully",
       });
-      posthog.capture("New category added", { type, categoryName });
+      posthog?.capture("New category added", { type, categoryName });
       setCategoryName("");
       setOpen(false);
 

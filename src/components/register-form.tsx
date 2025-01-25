@@ -10,7 +10,6 @@ import { userQuery } from "@/network/queries/user.queries";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { isAxiosError } from "axios";
-import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
 import GoogleLogin from "./google-login";
 import Spinner from "./ui/spinner";
@@ -20,7 +19,7 @@ export default function RegisterForm({
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   const navigate = useNavigate();
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -58,8 +57,8 @@ export default function RegisterForm({
         fullName: response.data.fullName,
         isEmailVerified: response.data.isEmailVerified,
       });
-      posthog.identify(response.data.id, { ...response.data });
-      posthog.capture("Registered", { email: response.data.email });
+      posthog?.identify(response.data.id, { ...response.data });
+      posthog?.capture("Registered", { email: response.data.email });
       navigate({
         to: "/overview",
         replace: true,

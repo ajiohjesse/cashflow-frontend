@@ -19,8 +19,8 @@ import { getCategoryWithStatQuery } from "@/network/queries/category.queries";
 import { getOverviewQuery } from "@/network/queries/overview.queries";
 import { getTransactionQuery } from "@/network/queries/transactions.queries";
 import { useMutation } from "@tanstack/react-query";
-import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import AddCategory from "./add-category";
 import { CategorySelect } from "./category-select";
 import { Input } from "./ui/input";
@@ -79,7 +79,7 @@ interface TransactionFormProps {
 
 const TransactionForm = (props: TransactionFormProps) => {
   const { type } = props;
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState<
     { id: string; name: string } | undefined
@@ -111,7 +111,7 @@ const TransactionForm = (props: TransactionFormProps) => {
       toast({
         title: "Transaction added successfully",
       });
-      posthog.capture("New transaction", { type });
+      posthog?.capture("New transaction", { type });
       queryClient.invalidateQueries(getOverviewQuery());
       queryClient.invalidateQueries(getTransactionQuery(type));
       queryClient.invalidateQueries(getCategoryWithStatQuery(type));

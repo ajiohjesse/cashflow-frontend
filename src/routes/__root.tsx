@@ -14,11 +14,6 @@ import {
   useRouter,
 } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import { PostHogProvider } from "posthog-js/react";
-
-const postHogOptions = {
-  api_host: import.meta.env.VITE_POSTHOG_HOST,
-};
 
 const ErrorBoundary: ErrorRouteComponent = ({ error, reset }) => {
   const router = useRouter();
@@ -46,18 +41,13 @@ export const Route = createRootRoute({
 
 function RootLayout() {
   return (
-    <PostHogProvider
-      apiKey={import.meta.env.VITE_POSTHOG_KEY}
-      options={postHogOptions}
-    >
-      <QueryClientProvider client={queryClient}>
-        <Toaster />
-        <TooltipProvider>
-          <Outlet />
-        </TooltipProvider>
-        {/* <ReactQueryDevtools /> */}
-      </QueryClientProvider>
-    </PostHogProvider>
+    <QueryClientProvider client={queryClient}>
+      <Toaster />
+      <TooltipProvider>
+        <Outlet />
+      </TooltipProvider>
+      {/* <ReactQueryDevtools /> */}
+    </QueryClientProvider>
   );
 }
 

@@ -10,8 +10,8 @@ import { userQuery } from "@/network/queries/user.queries";
 import { useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { isAxiosError } from "axios";
-import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import GoogleLogin from "./google-login";
 import Spinner from "./ui/spinner";
 
@@ -20,7 +20,7 @@ export default function LoginForm({
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   const navigate = useNavigate();
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,8 +53,8 @@ export default function LoginForm({
         fullName: response.data.fullName,
         isEmailVerified: response.data.isEmailVerified,
       });
-      posthog.identify(response.data.id, { ...response.data });
-      posthog.capture("Logged in", { email: response.data.email });
+      posthog?.identify(response.data.id, { ...response.data });
+      posthog?.capture("Logged in", { email: response.data.email });
       navigate({
         to: "/overview",
         replace: true,

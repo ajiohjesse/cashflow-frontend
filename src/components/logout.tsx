@@ -3,20 +3,20 @@ import { api } from "@/lib/axios";
 import { queryClient } from "@/lib/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { LogOut } from "lucide-react";
-import { usePostHog } from "posthog-js/react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import { Button } from "./ui/button";
 import Spinner from "./ui/spinner";
 
 const Logout = () => {
   const authStore = useAuthStore();
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
   const { mutate, isPending } = useMutation({
     mutationKey: ["logout"],
     mutationFn: async () => {
       return await api.post("/v1/logout");
     },
     onSuccess: () => {
-      posthog.capture("User logout");
+      posthog?.capture("User logout");
       queryClient.invalidateQueries();
       authStore.clearUser();
     },

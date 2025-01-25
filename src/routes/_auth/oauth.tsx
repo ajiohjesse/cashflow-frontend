@@ -12,7 +12,7 @@ import {
   useNavigate,
 } from "@tanstack/react-router";
 import { LoaderIcon } from "lucide-react";
-import { usePostHog } from "posthog-js/react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 
 export const Route = createFileRoute("/_auth/oauth")({
   component: OauthLoading,
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/_auth/oauth")({
 function OauthLoading() {
   const navigate = useNavigate();
   const { code, state } = Route.useSearch();
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
 
   const { data, error } = useQuery({
     queryKey: ["oauth", { code, state }],
@@ -51,7 +51,7 @@ function OauthLoading() {
       title: "Failed to login with google",
       variant: "destructive",
     });
-    posthog.capture("Google signin failed");
+    posthog?.capture("Google signin failed");
     navigate({
       to: "/login",
       replace: true,
@@ -68,7 +68,7 @@ function OauthLoading() {
       fullName: data.fullName,
       isEmailVerified: data.isEmailVerified,
     });
-    posthog.identify(data.id, { ...data });
+    posthog?.identify(data.id, { ...data });
     return <Navigate to="/overview" />;
   }
 

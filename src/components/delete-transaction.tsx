@@ -16,8 +16,8 @@ import { getOverviewQuery } from "@/network/queries/overview.queries";
 import { getTransactionQuery } from "@/network/queries/transactions.queries";
 import { useMutation } from "@tanstack/react-query";
 import { Trash2Icon } from "lucide-react";
-import { usePostHog } from "posthog-js/react";
 import { useState } from "react";
+import { useVitePostHog } from "vite-plugin-posthog/react";
 import Spinner from "./ui/spinner";
 
 interface Props {
@@ -27,7 +27,7 @@ interface Props {
 
 export default function DeleteTransaction(props: Props) {
   const { transactionId, type } = props;
-  const posthog = usePostHog();
+  const posthog = useVitePostHog();
   const [isDialogOpen, setDialogOpen] = useState(false);
 
   const { mutate, isPending } = useMutation({
@@ -40,7 +40,7 @@ export default function DeleteTransaction(props: Props) {
       await api.delete(url);
     },
     onSuccess: () => {
-      posthog.capture("Delete transaction", { type });
+      posthog?.capture("Delete transaction", { type });
       queryClient.invalidateQueries(getTransactionQuery(type));
       queryClient.invalidateQueries(getOverviewQuery());
       queryClient.invalidateQueries(getCategoryWithStatQuery(type));
