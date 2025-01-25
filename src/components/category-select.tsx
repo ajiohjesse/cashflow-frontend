@@ -49,7 +49,7 @@ export const CategorySelect = (props: CategorySelectProps) => {
 
   if (error) {
     return (
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen} modal>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
@@ -80,7 +80,7 @@ export const CategorySelect = (props: CategorySelectProps) => {
 
   if (categories) {
     return (
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen} modal>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
@@ -97,7 +97,7 @@ export const CategorySelect = (props: CategorySelectProps) => {
         <PopoverContent className="p-0">
           <Command>
             <CommandInput placeholder="Search category..." />
-            <CommandList>
+            <CommandList className="overflow-y-auto">
               <CommandEmpty>No category found.</CommandEmpty>
               <CommandGroup>
                 {categories.map((category) => (
@@ -132,7 +132,7 @@ export const CategorySelect = (props: CategorySelectProps) => {
   }
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} modal>
       <PopoverTrigger asChild>
         <Button
           variant="outline"

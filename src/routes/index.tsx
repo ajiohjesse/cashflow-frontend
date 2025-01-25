@@ -14,7 +14,7 @@ function RouteComponent() {
   return (
     <>
       <PageHeader />
-      <main className="min-h-[calc(100dvh-4rem)] px-8 py-6 md:px-16 lg:px-24">
+      <main className="min-h-[calc(100dvh-4rem)] px-8 py-14 md:px-16 lg:px-24 lg:py-0">
         <section className="flex flex-col gap-8 min-[900px]:grid min-[900px]:grid-cols-2 min-[900px]:items-center min-[900px]:py-8">
           <div className="space-y-6">
             <h1 className="text-balance text-[clamp(2.2rem,4vw,3rem)] font-bold leading-[1.2]">

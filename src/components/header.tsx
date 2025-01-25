@@ -1,5 +1,5 @@
 import { useNavStore } from "@/stores/stores";
-import { MenuIcon } from "lucide-react";
+import { MenuIcon, XIcon } from "lucide-react";
 import Logo from "./logo";
 import ProfileSnippet from "./profile-snippet";
 import { Button } from "./ui/button";
@@ -18,7 +18,7 @@ const Header = () => {
           className="lg:hidden"
         >
           <span className="sr-only">Toggle nav menu</span>
-          <MenuIcon />
+          {isOpen ? <XIcon /> : <MenuIcon />}
         </Button>
       </div>
     </header>
