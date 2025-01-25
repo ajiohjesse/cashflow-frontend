@@ -25,7 +25,9 @@ function ProtectedLayout() {
   useClickOutside(
     navRef,
     () => {
-      setIsOpen(!isOpen);
+      if (isOpen) {
+        setIsOpen(false);
+      }
     },
     [],
     ["nav-toggle"],
